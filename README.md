@@ -1,3 +1,4 @@
+[![Deploy Cloudflare Worker](https://github.com/jlgsjlgs/telegram-budget-bot/actions/workflows/deploy.yml/badge.svg)](https://github.com/jlgsjlgs/telegram-budget-bot/actions/workflows/deploy.yml)
 # Telegram Budget Bot
 
 A powerful personal expense tracking bot for Telegram that automatically logs your expenses to Google Sheets. Built with Cloudflare Workers and Google Apps Script for reliable, serverless operation.
