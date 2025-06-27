@@ -20,7 +20,7 @@ Telegram → Cloudflare Workers → Google Apps Script → Google Sheets
 
 ## Deployment
 
-Telegram bot is deployed on Cloudfare Workers via Github Actions using [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
+Telegram bot is deployed on Cloudflare Workers via Github Actions using [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
 
 ## Environment Variables
 
