@@ -19,10 +19,21 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+        
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
+          secrets: |
+            APPS_SCRIPT_URL
+            AUTHORIZED_USERS
+            BOT_TOKEN
+            SHARED_SECRET
+            WEBHOOK_SECRET
+        env:
+          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
+          AUTHORIZED_USERS: ${{ secrets.AUTHORIZED_USERS }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          SHARED_SECRET: ${{ secrets.SHARED_SECRET }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
