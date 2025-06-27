@@ -156,7 +156,6 @@ class TelegramBudgetBot {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-App-Key': this.sharedSecret,
         },
         body: JSON.stringify({
           userId,
@@ -164,6 +163,7 @@ class TelegramBudgetBot {
           description: expenseData.description,
           paymentMode: expenseData.paymentMode,
           amount: expenseData.amount,
+          appKey: this.sharedSecret
         }),
       });
 
@@ -298,8 +298,7 @@ class TelegramBudgetBot {
       } else {
         await this.sendMessage(chatId,
           `❌ <b>Error Adding Expense</b>\n\n` +
-          `${result.error || 'Unknown error occurred'}\n\n` +
-          `Please try again later or contact support if the issue persists.`
+          `${result.error || 'Unknown error occurred'}\n\n`
         );
       }
       return;
