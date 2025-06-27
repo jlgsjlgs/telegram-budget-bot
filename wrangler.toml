@@ -3,17 +3,8 @@ main = "src/index.ts"
 compatibility_date = "2024-05-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Environment variables (secrets will be set via GitHub Actions or Wrangler CLI)
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 [vars]
-# Add any non-sensitive variables here if needed
-
-# Secrets (set these via GitHub Actions secrets or wrangler secret put)
-# BOT_TOKEN = "your_telegram_bot_token"
-# WEBHOOK_SECRET = "your_webhook_secret"  
-# AUTHORIZED_USERS = "123456789,987654321"
-# APPS_SCRIPT_URL = "your_google_apps_script_url"
-
-# Optional: Custom domain routing
-# [[routes]]
-# pattern = "your-domain.com/webhook/*"
-# zone_name = "your-domain.com"
