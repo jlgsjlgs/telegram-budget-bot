@@ -1,0 +1,25 @@
+{
+  "name": "telegram-budget-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for budget tracking with Google Sheets integration",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "budget",
+    "cloudflare-workers"
+  ],
+  "author": "jlgsjlgs",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240529.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^3.57.0"
+  }
+}
