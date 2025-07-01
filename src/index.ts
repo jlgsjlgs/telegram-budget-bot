@@ -238,7 +238,7 @@ class TelegramBudgetBot {
         `💡 <b>Tips:</b>\n` +
         `• Use /categories to see valid categories\n` +
         `• Date is added automatically\n` +
-        `• All expenses are marked as recurring by default\n` +
+        `• All expenses are marked as non-recurring by default\n` +
         `• Data is organized by month (e.g., "07/25" for July 2025)`
       );
       return;
@@ -291,7 +291,7 @@ class TelegramBudgetBot {
           `📝 Description: ${result.data.description}\n` +
           `💳 Payment: ${result.data.paymentMode}\n` +
           `💰 Amount: $${result.data.amount.toFixed(2)}\n` +
-          `🔄 Recurring: Yes\n` +
+          `🔄 Recurring: No\n` +
           `📊 Sheet: ${result.data.sheetName}\n\n` +
           `Your expense has been logged! 🎉`
         );
