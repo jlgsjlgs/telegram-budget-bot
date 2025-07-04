@@ -42,9 +42,9 @@ interface AppsScriptResponse {
   error?: string;
   data?: {
     date: string;
-    category: string;
+    formattedCategory: string;
     description: string;
-    paymentMode: string;
+    formattedPaymentMode: string;
     amount: number;
     sheetName: string;
   };
@@ -58,12 +58,12 @@ class TelegramBudgetBot {
   
   // Predefined categories - keep in sync with Google Apps Script
   private readonly VALID_CATEGORIES = [
-    'Food',
-    'Transport',
-    'Shopping',
-    'Entertainment',
-    'Healthcare',
-    'Other'
+    'food',
+    'transport',
+    'shopping',
+    'entertainment',
+    'healthcare',
+    'others'
   ];
 
   constructor(env: Env) {
@@ -107,7 +107,7 @@ class TelegramBudgetBot {
 
   // Validate category
   private isValidCategory(category: string): boolean {
-    return this.VALID_CATEGORIES.includes(category);
+    return this.VALID_CATEGORIES.includes(category.toLowerCase());
   }
 
   // Get categories list formatted for display
@@ -287,9 +287,9 @@ class TelegramBudgetBot {
         await this.sendMessage(chatId,
           `✅ <b>Expense Added Successfully!</b>\n\n` +
           `📅 Date: ${result.data.date}\n` +
-          `🏷️ Category: ${result.data.category}\n` +
+          `🏷️ Category: ${result.data.formattedCategory}\n` +
           `📝 Description: ${result.data.description}\n` +
-          `💳 Payment: ${result.data.paymentMode}\n` +
+          `💳 Payment: ${result.data.formattedPaymentMode}\n` +
           `💰 Amount: $${result.data.amount.toFixed(2)}\n` +
           `🔄 Recurring: No\n` +
           `📊 Sheet: ${result.data.sheetName}\n\n` +
