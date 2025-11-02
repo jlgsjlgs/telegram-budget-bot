@@ -119,8 +119,8 @@ class TelegramBudgetBot {
 
   // Parse expense input from user message
   private parseExpenseInput(text: string): ExpenseData | null {
-    // Remove the /expense command
-    const input = text.replace('/expense', '').trim();
+    // Remove the /e command
+    const input = text.replace('/e', '').trim();
     
     // Split by pipe delimiter
     const parts = input.split('|').map(part => part.trim());
@@ -204,11 +204,12 @@ class TelegramBudgetBot {
         `🏦 <b>Personal Budget Bot</b>\n\n` +
         `Welcome! I'll help you track your expenses.\n\n` +
         `<b>Available Commands:</b>\n` +
-        `• /expense - Add new expense\n` +
+        `• /e - Add new expense\n` +
         `• /categories - View valid categories\n` +
         `• /help - Show detailed help\n\n` +
         `<b>Quick Example:</b>\n` +
-        `/expense Food | Lunch Chicken Rice | Cash | 5\n\n` +
+        `/e Food | Lunch Chicken Rice | cash | 5\n\n` +
+        `<b>Payment shortcuts:</b> pn (PayNow), cc (Card), cash\n\n` +
         `📊 Your data is automatically organized by month in Google Sheets!`
       );
       return;
@@ -228,13 +229,17 @@ class TelegramBudgetBot {
         `/start - Show welcome message\n` +
         `/categories - Show valid categories\n` +
         `/help - Show this help\n` +
-        `/expense - Add new expense\n\n` +
+        `/e - Add new expense\n\n` +
         `<b>Expense Format:</b>\n` +
         `Category | Description | Payment Mode | Amount\n\n` +
+        `<b>Payment shortcuts:</b>\n` +
+        `• pn = PayNow\n` +
+        `• cc = Card\n` +
+        `• cash = Cash\n\n` +
         `<b>Examples:</b>\n` +
-        `• /expense Food | Coffee and pastry | Cash | 8.50\n` +
-        `• /expense Transport | Uber to airport | Card | 25.00\n` +
-        `• /expense Shopping | Groceries | Card | 67.89\n\n` +
+        `• /e Food | Coffee and pastry | cash | 8.50\n` +
+        `• /e Transport | Uber to airport | cc | 25.00\n` +
+        `• /e Shopping | Groceries | pn | 67.89\n\n` +
         `💡 <b>Tips:</b>\n` +
         `• Use /categories to see valid categories\n` +
         `• Date is added automatically\n` +
@@ -244,11 +249,11 @@ class TelegramBudgetBot {
       return;
     }
 
-    if (text.startsWith('/expense')) {
+    if (text.startsWith('/e')) {
       const expenseData = this.parseExpenseInput(text);
       
       if (!expenseData) {
-        const input = text.replace('/expense', '').trim();
+        const input = text.replace('/e', '').trim();
         const parts = input.split('|').map(part => part.trim());
         
         // Check if it's a category validation issue
@@ -265,14 +270,15 @@ class TelegramBudgetBot {
         
         await this.sendMessage(chatId,
           `❌ <b>Invalid format!</b>\n\n` +
-          `Please use: /expense Category | Description | Payment Mode | Amount\n\n` +
+          `Please use: /e Category | Description | Payment Mode | Amount\n\n` +
           `<b>Example:</b>\n` +
-          `/expense Food | Lunch at cafe | Credit Card | 15.50\n\n` +
+          `/e Food | Lunch at cafe | cc | 15.50\n\n` +
           `Make sure to:\n` +
           `• Use pipe symbols (|) to separate fields\n` +
           `• Include all 4 fields\n` +
           `• Use a valid category (see /categories)\n` +
-          `• Use a valid number for amount`
+          `• Use a valid number for amount\n\n` +
+          `<b>Payment shortcuts:</b> pn, cc, cash`
         );
         return;
       }
@@ -311,7 +317,7 @@ class TelegramBudgetBot {
       `• /start - Get started\n` +
       `• /categories - View valid categories\n` +
       `• /help - Show detailed help\n` +
-      `• /expense - Add a new expense\n\n` +
+      `• /e - Add a new expense\n\n` +
       `Type /help for detailed usage instructions.`
     );
   }
